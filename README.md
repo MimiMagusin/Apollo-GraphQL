@@ -1,9 +1,14 @@
 # Apollo - GraphQl
 > In this repo I experiment with apollo graphql. The setup and queries can be found in the master branch, the mutations in the 'Mutation branch'
 
-# What I learned
+To start run this app
+* clone the repo
+* run `yarn`
+* run `yarn start`
 
-## The steps to set up an app
+## What I learned
+
+### The steps to set up an app
   1) **_Set up a client_**
 
 ```js
@@ -51,7 +56,7 @@ const Dogs = ({ onDogSelected }) => (
 4) **_Set Up your Mutation Component_**
 
 ```js
-onst ADD_TODO = gql`
+const ADD_TODO = gql`
   mutation addTodo($type: String!) {
     addTodo(type: $type) {
       id
@@ -98,10 +103,10 @@ const AddTodo = () => {
 ```
 
 
-## Refetching vs Polling
+### Refetching vs Polling
 * Use `refetch` to fetch new data after a user action. Use `polling` to refetch data on a specific time interval
 
-## Apollo Consumer
+### Apollo Consumer
 When React mounts a Query component, the query is automatically fired off. If you want to delay firing the query up to a certain moment, you can use apollo consumer:
 
 ```js
