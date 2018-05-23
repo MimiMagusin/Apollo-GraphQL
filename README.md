@@ -1,7 +1,7 @@
 # Apollo - GraphQl
 > In this repo I experiment with apollo graphql. The setup and queries can be found in the master branch, the mutations in the 'Mutation branch'
 
-To start run this app
+To run this app
 * clone the repo
 * run `yarn`
 * run `yarn start`
