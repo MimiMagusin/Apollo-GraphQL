@@ -47,6 +47,57 @@ const Dogs = ({ onDogSelected }) => (
   </Query>
 );
 ```
+4) **_Set Up your Mutation Component_**
+
+```js
+onst ADD_TODO = gql`
+  mutation addTodo($type: String!) {
+    addTodo(type: $type) {
+      id
+      type
+    }
+  }
+`;
+
+const AddTodo = () => {
+  let input;
+
+  return (
+    <Mutation 
+    mutation={ADD_TODO}
+    update={(cache, { data: { addTodo } }) => {
+      const { todos } = cache.readQuery({ query: GET_TODOS });
+      cache.writeQuery({
+        query: GET_TODOS,
+        data: { todos: todos.concat([addTodo]) }
+      });
+    }}  
+    >
+      {(addTodo, { data }) => (
+        <div>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              addTodo({ variables: { type: input.value } });
+              input.value = "";
+            }}
+          >
+            <input
+              ref={node => {
+                input = node;
+              }}
+            />
+            <button type="submit">Add Todo</button>
+          </form>
+        </div>
+      )}
+    </Mutation>
+  );
+};
+```
+
+
+
 ## Refetching vs Polling
 * Use `refetch` to fetch new data after a user action. Use `polling` to refetch data on a specific time interval
 
